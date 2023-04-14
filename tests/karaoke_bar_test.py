@@ -76,4 +76,21 @@ class TestKaraokeBar(unittest.TestCase):
         result = self.bar.get_total_number_of_guests()
         self.assertEqual(3, result)
 
+    # def test_guest_can_afford_drink__yes(self):
+    #     result = self.bar.guest_can_afford_drink(self.guest1, "Beer")
+    #     self.assertEqual(True, result)
+
+    # def test_guest_can_afford_drink__no(self):
+    #     result = self.bar.guest_can_afford_drink(self.bar.drinks, self.guest3, "Champagne")
+    #     self.assertEqual(False, result)
     
+    # def test_guest_can_afford_drink__no(self):
+    #     self.bar.guest_can_afford_drink()
+        
+
+    # def test_guest_can_buy_drink(self):
+    #     self.bar.sell_drink_to_guest("Beer", self.guest1)
+    #     self.assertEqual(150, self.guest1.wallet)
+    #     self.assertEqual(50, self.bar.total_cash)
+
+    # self.bar.guest_can_afford_drink()

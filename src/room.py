@@ -38,12 +38,14 @@ class Room:
     def guest_likes_song(self, song_playing):
         if song_playing in self.songs:
             for guest in self.guests:
-                return f"Whoo! {guest.name} likes this song!"
+                if song_playing.genre in guest.favourite_genres:
+                    return f"Whoo! {guest.name} likes this song!"
             
     def guest_loves_song(self, song_playing):
         if song_playing in self.songs:
             for guest in self.guests:
-                return f"Whoo! This is {guest.name}'s favourite song!"
+                if song_playing.name == guest.favourite_song:
+                    return f"Whoo! This is {guest.name}'s favourite song!"
         
 
 
