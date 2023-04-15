@@ -48,5 +48,6 @@ class Room:
                     return f"Whoo! This is {guest.name}'s favourite song!"
         
 
+    def clear_room(self):
+        self.guests.clear()
 
-    

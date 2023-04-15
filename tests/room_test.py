@@ -101,3 +101,10 @@ class TestRoom(unittest.TestCase):
         result = self.room1.guest_loves_song(self.song2)
         self.assertEqual("Whoo! This is Bob's favourite song!", result)
     
+    def test_clear_room(self):
+        self.room1.check_in(self.guest1)
+        self.room1.check_in(self.guest2)
+        self.room1.check_in(self.guest3)
+        self.room1.clear_room()
+        result = len(self.room1.guests)
+        self.assertEqual(0, result)

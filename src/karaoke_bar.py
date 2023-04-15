@@ -44,3 +44,16 @@ class KaraokeBar:
             price = self.get_drink_price(drink_sold)
             guest_buying.wallet -= price
             self.total_cash += price
+
+    def transfer_room_cash_to_total(self, room):
+        self.total_cash += room.cash_taken
+        room.cash_taken -= room.cash_taken
+
+    def clear_guests_from_bar(self):
+        self.guests_at_bar.clear()
+
+    def end_of_night(self):
+        for room in self.rooms:
+            self.transfer_room_cash_to_total(room)
+            room.clear_room()
+        self.clear_guests_from_bar()

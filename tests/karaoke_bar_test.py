@@ -101,4 +101,31 @@ class TestKaraokeBar(unittest.TestCase):
         self.assertEqual(15, self.guest1.wallet)
         self.assertEqual(5, self.bar.total_cash)
 
+    def test_transfer_room_cash_to_total(self):
+        self.room1.check_in(self.guest1)
+        self.room1.check_in(self.guest2)
+        self.room1.check_in(self.guest3)
+        self.bar.transfer_room_cash_to_total(self.room1)
+        self.assertEqual(15, self.bar.total_cash)
+        self.assertEqual(0, self.room1.cash_taken)
+
+    def test_clear_guests_from_bar(self):
+        self.bar.add_guest_to_bar(self.guest1)
+        self.bar.add_guest_to_bar(self.guest2)
+        self.bar.clear_guests_from_bar()
+        result = len(self.bar.guests_at_bar)
+        self.assertEqual(0, result)
+
+    def test_end_of_night(self):
+        self.bar.add_new_room(self.room3)
+        self.room1.check_in(self.guest1)
+        self.bar.add_guest_to_bar(self.guest3)
+        self.room3.check_in(self.guest2)
+        self.bar.end_of_night()
+        self.assertEqual(25, self.bar.total_cash)
+        self.assertEqual(0, len(self.room1.guests))
+        self.assertEqual(0, len(self.bar.guests_at_bar))
+        self.assertEqual(0, self.room2.cash_taken)
+
+
 
