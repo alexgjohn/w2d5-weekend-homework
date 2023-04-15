@@ -7,9 +7,9 @@ class TestRoom(unittest.TestCase):
 
     def setUp(self):
 
-        self.guest1 = Guest("Bob", 20, ["Rock", "Rap"], "Song 2")
-        self.guest2 = Guest("Jade", 200, ["Dance"], "Safety Dance")
-        self.guest3 = Guest("Toby", 10, ["Classical"], "Beethoven's 9th Symphony")
+        self.guest1 = Guest("Bob", 40, 20, ["Rock", "Rap"], "Song 2")
+        self.guest2 = Guest("Jade", 17, 200, ["Dance"], "Safety Dance")
+        self.guest3 = Guest("Toby", 28, 10, ["Classical"], "Beethoven's 9th Symphony")
         self.song1 = Song("Without Me", "Eminem", "Rap")
         self.song2 = Song("Song 2", "Blur", "BritPop")
         self.ruby_songs = []

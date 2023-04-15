@@ -13,9 +13,9 @@ class TestKaraokeBar(unittest.TestCase):
                             {"Wine" : 4},
                             {"Champagne" : 15
                             }]
-        self.guest1 = Guest("Bob", 20, ["Rock", "Rap"], "Song 2")
-        self.guest2 = Guest("Jade", 200, ["Dance"], "Safety Dance")
-        self.guest3 = Guest("Toby", 10, ["Classical"], "Beethoven's 9th Symphony")
+        self.guest1 = Guest("Bob", 40, 20, ["Rock", "Rap"], "Song 2")
+        self.guest2 = Guest("Jade", 17, 200, ["Dance"], "Safety Dance")
+        self.guest3 = Guest("Toby", 28, 10, ["Classical"], "Beethoven's 9th Symphony")
         self.song1 = Song("Without Me", "Eminem", "Rap")
         self.song2 = Song("Song 2", "Blur", "BritPop")
         self.ruby_songs = []
@@ -76,21 +76,29 @@ class TestKaraokeBar(unittest.TestCase):
         result = self.bar.get_total_number_of_guests()
         self.assertEqual(3, result)
 
-    # def test_guest_can_afford_drink__yes(self):
-    #     result = self.bar.guest_can_afford_drink(self.guest1, "Beer")
-    #     self.assertEqual(True, result)
+    def test_get_drink_price_from_name(self):
+        result = self.bar.get_drink_price("Beer")
+        self.assertEqual(5, result)
 
-    # def test_guest_can_afford_drink__no(self):
-    #     result = self.bar.guest_can_afford_drink(self.bar.drinks, self.guest3, "Champagne")
-    #     self.assertEqual(False, result)
+    def test_guest_can_afford_drink__yes(self):
+        result = self.bar.guest_can_afford_drink(self.guest1, "Beer")
+        self.assertEqual(True, result)
+
+    def test_guest_can_afford_drink__no(self):
+        result = self.bar.guest_can_afford_drink(self.guest3, "Champagne")
+        self.assertEqual(False, result)
+
+    def test_guest_is_old_enough_to_drink__yes(self):
+        result = self.bar.guest_is_old_enough_to_drink(self.guest1)
+        self.assertEqual(True, result)
     
-    # def test_guest_can_afford_drink__no(self):
-    #     self.bar.guest_can_afford_drink()
-        
+    def test_guest_is_old_enough_to_drink__no(self):
+        result = self.bar.guest_is_old_enough_to_drink(self.guest2)
+        self.assertEqual(False, result)
 
-    # def test_guest_can_buy_drink(self):
-    #     self.bar.sell_drink_to_guest("Beer", self.guest1)
-    #     self.assertEqual(150, self.guest1.wallet)
-    #     self.assertEqual(50, self.bar.total_cash)
+    def test_guest_can_buy_drink(self):
+        self.bar.sell_drink_to_guest("Beer", self.guest1)
+        self.assertEqual(15, self.guest1.wallet)
+        self.assertEqual(5, self.bar.total_cash)
 
-    # self.bar.guest_can_afford_drink()
+

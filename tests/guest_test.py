@@ -6,15 +6,19 @@ class TestGuest(unittest.TestCase):
 
     def setUp(self):
 
-        self.guest1 = Guest("Tyler", 100, ["Rock", "Rap", "Metal"], "Without Me")
-        self.guest2 = Guest("Sofia", 50, ["Pop", "Dance"], "Safety Dance")
-        self.guest3 = Guest("Bryce", 80, ["BritPop", "Disco", "Jazz"], "Wonderwall")
+        self.guest1 = Guest("Tyler", 35, 100, ["Rock", "Rap", "Metal"], "Without Me")
+        self.guest2 = Guest("Sofia", 25, 50, ["Pop", "Dance"], "Safety Dance")
+        self.guest3 = Guest("Bryce", 15, 80, ["BritPop", "Disco", "Jazz"], "Wonderwall")
         self.song1 = Song("Without Me", "Eminem", "Rap")
         self.song2 = Song("Song 2", "Blur", "BritPop")
 
     def test_guest_has_name(self):
         result = self.guest1.get_guest_name()
         self.assertEqual("Tyler", result)
+    
+    def test_guest_has_age(self):
+        result = self.guest2.get_guest_age()
+        self.assertEqual(25, result)
 
     def test_guest_has_wallet(self):
         result = self.guest2.get_guest_wallet()

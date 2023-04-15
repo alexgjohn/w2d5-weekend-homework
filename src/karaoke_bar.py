@@ -26,13 +26,21 @@ class KaraokeBar:
             total_guests += len(room.guests)
         return total_guests
     
-    # def guest_can_afford_drink(self):
-    #     for drink in self.drinks:
-    #         for key in drink:
-    #             print(key)
+    def get_drink_price(self, drink_name):
+        for drink in self.drinks:
+            for key in drink:
+                if key == drink_name:
+                    return drink[drink_name]
+            
+    def guest_can_afford_drink(self, guest_buying, drink_name):
+        price = self.get_drink_price(drink_name)
+        return guest_buying.wallet >= price
+    
+    def guest_is_old_enough_to_drink(self, guest):
+        return guest.age >= 18
 
-            #return guest.wallet >= self.drinks[drink_name]
-    
-    
-    # def sell_drink_to_guest(self, drink_sold, guest_buying):
-    #     if drink_sold in self.drinks and
+    def sell_drink_to_guest(self, drink_sold, guest_buying):
+        if self.guest_can_afford_drink(guest_buying, drink_sold) and self.guest_is_old_enough_to_drink:
+            price = self.get_drink_price(drink_sold)
+            guest_buying.wallet -= price
+            self.total_cash += price
